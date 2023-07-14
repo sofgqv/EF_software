@@ -10,7 +10,7 @@ def obtener_contactos():
     cuenta = get_cuenta(numero)
     if cuenta is None:
         return jsonify({
-            "message": "Cuenta no encontrada"
+            "message": "Cuenta no encontrada."
         }), 404
     
     contactos = {}
@@ -32,7 +32,7 @@ def realizar_pago():
     cuenta = get_cuenta(numero)
     if cuenta is None:
         return jsonify({
-            "message": "Cuenta no encontrada"
+            "message": "Cuenta no encontrada."
         }), 404
 
     res = cuenta.pagar(destino, valor)
@@ -44,7 +44,7 @@ def realizar_pago():
     today = datetime.now().strftime('%d/%m/%Y')
 
     return jsonify({
-        "message": f"Realizado en {today}"
+        "message": f"Realizado en {today}."
     }), 200
 
 @app.route("/billetera/historial", methods=["GET"])
