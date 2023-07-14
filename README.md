@@ -16,6 +16,8 @@ Al deployar la app en sitios como Heroku (con heroku scheduler) o AWS (EventBrid
 
 Además, antes de hacer cualquier operación se revisaría que la suma del valor de la transacción + daily sea menor a 200, sino no se permitirá hacer el pago.
 
+Otra forma más simple y si queremos hacerlo local y mantener la app de la forma más parecida posible, es que antes de hacer cualquier operación podemos revisar todas las operaciones hechas en el día de hoy, sumar los valores de las operaciones y revisar que estas más el valor de la operación que queremos hacer ahora sea menor a 200.
+
 ### Nuevos casos de prueba
 
 - Intentar hacer una transacción con el valor de `daily` en 50 y hacer una transacción de 100, que sería el caso de **exito** (200).
