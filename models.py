@@ -17,17 +17,19 @@ class Cuenta:
 
     def pagar(self, num_destino, valor):
         if num_destino not in self.contactos:
-            return "El número de destino no es válido."
+            return "El número de destino no está en los contactos."
         if self.saldo < valor:
             return "Saldo insuficiente."
         cuenta_destino = get_cuenta(num_destino)
         if cuenta_destino is None:
             return "Cuenta destino no encontrada."   
         
-        self.saldo -= valor
         realizada = Operacion(num_destino, self.numero, valor, "realizado")
-        recibida = Operacion(num_destino, self.numero, valor, "recibido")
+        self.saldo -= valor
         self.operaciones.append(realizada)
+
+        recibida = Operacion(num_destino, self.numero, valor, "recibido")
+        cuenta_destino.saldo += valor
         cuenta_destino.operaciones.append(recibida)
 
         return "Pago realizado."
@@ -43,9 +45,11 @@ class Operacion:
     
     def __str__(self):
         if self.tipo == "recibido":
-            return f"Pago {self.tipo} de {self.valor} de {self.numero_origen}"
+            name = get_cuenta(self.numero_origen).nombre
+            return f"Pago {self.tipo} de {self.valor} de {name}"
         elif self.tipo == "realizado":
-            return f"Pago {self.tipo} de {self.valor} a {self.numero_destino}"
+            name = get_cuenta(self.numero_destino).nombre
+            return f"Pago {self.tipo} de {self.valor} a {name}"
 
 BD = [
     Cuenta("21345", "Arnaldo", 200, ["123", "456"]),
