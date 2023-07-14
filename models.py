@@ -9,8 +9,7 @@ class Cuenta:
         self.operaciones = []
 
     def historial(self):
-        historial = f"Saldo de {self.nombre}: {self.saldo}\n"
-        historial += f"Operaciones de {self.nombre}\n"
+        historial = f"Saldo de {self.nombre}: {self.saldo}\nOperaciones de {self.nombre}\n"
         for operacion in self.operaciones:
             historial += operacion.__str__() + "\n"
         return historial
@@ -22,7 +21,7 @@ class Cuenta:
             return "Saldo insuficiente."
         cuenta_destino = get_cuenta(num_destino)
         if cuenta_destino is None:
-            return "Cuenta destino no encontrada."   
+            return "La cuenta de destino no fue encontrada."   
         
         realizada = Operacion(num_destino, self.numero, valor, "realizado")
         self.saldo -= valor
@@ -52,7 +51,7 @@ class Operacion:
             return f"Pago {self.tipo} de {self.valor} a {name}"
 
 BD = [
-    Cuenta("21345", "Arnaldo", 200, ["123", "456"]),
+    Cuenta("21345", "Arnaldo", 200, ["123", "456", "007"]),
     Cuenta("123", "Luisa", 400, ["456"]),
     Cuenta("456", "Andrea", 300, ["21345"])
 ]

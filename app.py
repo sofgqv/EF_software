@@ -15,11 +15,11 @@ def obtener_contactos():
     
     contactos = {}
     for contacto in cuenta.contactos:
-        potential_contact = get_cuenta(contacto).nombre
+        potential_contact = get_cuenta(contacto)
         if potential_contact is None:
             contactos[contacto] = "Desconocido"
         else:
-            contactos[contacto] = potential_contact
+            contactos[contacto] = potential_contact.nombre
 
     return jsonify(contactos), 200
 
